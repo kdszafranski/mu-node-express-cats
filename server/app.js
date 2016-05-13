@@ -23,10 +23,6 @@ app.post('/felines', function(req, res) {
 
 app.use('/', index);
 
-
-
-
-
 app.listen(app.get('port'), function() {
   console.log('Server is ready on port:' + app.get('port'));
 });
