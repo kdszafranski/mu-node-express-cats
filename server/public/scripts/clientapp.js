@@ -1,18 +1,23 @@
 $(document).ready(function() {
-  // event listeners
+  // load data
+  getSongs();
+
+  // send submitted song data to the server
   $('#add-song').on('click', function() {
     event.preventDefault();
     var values = {};
-    $.each($('#inputForm').serializeArray(), function(i, field) {
+    $.each($('#songForm').serializeArray(), function(i, field) {
       values[field.name] = field.value;
     });
+
+    
 
     $.ajax({
       type: 'POST',
       url: '/songs',
       data: values,
       success: function(data, status) {
-        // check the status from the response
+        // check the status returned from the server
         if(status == "success") {
           getSongs();
         } else {
@@ -27,24 +32,26 @@ $(document).ready(function() {
 
   });
 
-  // get all cats (initial load)
+  // get all songs from the server
   function getSongs() {
     $.ajax({
       type: 'GET',
       url: '/songs',
       success: function(data) {
-        $('#song-container').empty();
+        $('#song-list').empty();
+        // append each song to the DOM
         data.forEach(function(song, i) {
-          console.log(song);
-          $('#song-container').append('<div class="song"></div>');
-          $el = $('#song-container').children().last();
-          $el.append('<h2>' + song.title + '</h2>');
-          $el.append('<p>By: ' + song.artist + '</p>');
+          appendDOM(song);
         });
       }
     });
   }
 
-  // post new cat
-  getSongs();
+  function appendDOM(song) {
+    $('#song-list').append('<div class="song"></div>');
+    $el = $('#song-list').children().last();
+    $el.append('<h2>' + song.title + '</h2>');
+    $el.append('<p>By: ' + song.artist + '</p>');
+  }
+
 });

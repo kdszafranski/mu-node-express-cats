@@ -34,6 +34,7 @@ app.post('/songs', function(req, res) {
   res.sendStatus(201);
 });
 
+// handle file quests to index route
 app.use('/', index);
 
 app.listen(app.get('port'), function() {
