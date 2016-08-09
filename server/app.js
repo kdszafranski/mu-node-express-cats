@@ -30,8 +30,8 @@ app.post('/songs', function(req, res) {
   // add to our song array
   songs.push(newSong);
 
-  // send new song back to the clien
-  res.send(true);
+  // send "created" HTTP Status code back to client
+  res.sendStatus(201);
 });
 
 app.use('/', index);

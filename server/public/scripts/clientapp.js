@@ -11,12 +11,17 @@ $(document).ready(function() {
       type: 'POST',
       url: '/songs',
       data: values,
-      success: function(response) {
-        if(response == true) {
+      success: function(data, status) {
+        // check the status from the response
+        if(status == "success") {
           getSongs();
         } else {
           alert("Something went wrong");
         }
+      },
+      error: function(xhr, status) {
+        // request failed or we got a 4xx status code
+        alert("HTTP Error!");
       }
     })
 
