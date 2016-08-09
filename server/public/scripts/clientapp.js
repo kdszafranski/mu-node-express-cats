@@ -5,17 +5,32 @@ $(document).ready(function() {
   // send submitted song data to the server
   $('#add-song').on('click', function() {
     event.preventDefault();
-    var values = {};
+
+    var song = {};
     $.each($('#songForm').serializeArray(), function(i, field) {
-      values[field.name] = field.value;
+      song[field.name] = field.value;
     });
 
-    
+    /**
+    Which is the same as:
 
+    $(this).serializeArray().forEach(function(field, index) {
+      song[field.name] = field.value;
+    });
+
+    Which is a method chain of these steps:
+
+    var fields = $(this).serializeArray();
+    fields.forEach(function(field, index) {
+      song[field.name] = field.value;
+    });
+    **/
+
+    // send song data to the server
     $.ajax({
       type: 'POST',
       url: '/songs',
-      data: values,
+      data: song,
       success: function(data, status) {
         // check the status returned from the server
         if(status == "success") {
