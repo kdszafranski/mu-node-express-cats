@@ -1,6 +1,6 @@
 $(document).ready(function() {
   // event listeners
-  $('#add-cat').on('click', function() {
+  $('#add-song').on('click', function() {
     event.preventDefault();
     var values = {};
     $.each($('#inputForm').serializeArray(), function(i, field) {
@@ -9,11 +9,11 @@ $(document).ready(function() {
 
     $.ajax({
       type: 'POST',
-      url: '/felines',
+      url: '/songs',
       data: values,
       success: function(response) {
         if(response == true) {
-          getCats();
+          getSongs();
         } else {
           alert("Something went wrong");
         }
@@ -23,19 +23,23 @@ $(document).ready(function() {
   });
 
   // get all cats (initial load)
-  function getCats() {
+  function getSongs() {
     $.ajax({
       type: 'GET',
-      url: '/felines',
+      url: '/songs',
       success: function(data) {
-        $('#cat-container').empty();
-        data.forEach(function(cat, i) {
-          $('#cat-container').append('<div>' + cat + '</div>');
+        $('#song-container').empty();
+        data.forEach(function(song, i) {
+          console.log(song);
+          $('#song-container').append('<div class="song"></div>');
+          $el = $('#song-container').children().last();
+          $el.append('<h2>' + song.title + '</h2>');
+          $el.append('<p>By: ' + song.artist + '</p>');
         });
       }
     });
   }
 
   // post new cat
-  getCats();
+  getSongs();
 });

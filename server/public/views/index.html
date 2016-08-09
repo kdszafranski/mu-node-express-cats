@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Node Cats</title>
+  <title>Node Songs</title>
   <link rel="stylesheet" href="/styles/style.css" />
   <script type="text/javascript" src="/vendor/jquery.min.js"></script>
   <script type="text/javascript" src="/scripts/clientapp.js"></script>
 </head>
 <body>
-  <h1>Add Node Cat</h1>
+  <h1>Add Song</h1>
   <form id="inputForm">
-    <label for="inputName">Cat Name:</label>
-    <input type="text" id="catName" name="catName" />
-    <button id="add-cat">Add Cat</button>
+    <label for="artist">Artist:</label>
+    <input type="text" id="artist" name="artist" />
+
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" />
+    <button id="add-song">Add Song</button>
   </form>
 
-  <h2>Cats</h2>
-  <div id="cat-container">
+  <h2>Songs</h2>
+  <div id="song-container">
   </div>
 </body>
 </html>

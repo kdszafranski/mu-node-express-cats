@@ -2,15 +2,21 @@ h1 {
   color: purple;
 }
 
-.cat {
+.song {
+  text-align: center;
   float: left;
   margin: 10px;
-  height: 50px;
-  width: 140px;
+  width: 210px;
   padding: 4px;
+  border: 1px solid #bbb;
+  border-radius: 5px;
 }
 
-.cat h3 {
-  font-size: 14px;
+.song h2 {
+  font-size: 18px;
   margin: 4px auto;
+}
+
+.song p {
+  font-style: italic;
 }

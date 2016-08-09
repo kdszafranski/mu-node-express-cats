@@ -10,15 +10,26 @@ app.set('port', process.env.PORT || 5000);
 app.use(bodyParser.urlencoded({extended: true}));
 
 // Data
-var cats = ['Kris', 'Luna', 'Rubio'];
+var songs = [{
+  artist: "Bruce Springsteen",
+  title: "Born in the U.S.A."
+}];
 
 //ROUTES
-app.get('/felines', function(req, res) {
-  res.send(cats);
+app.get('/songs', function(req, res) {
+  // return all songs in our array
+  res.send(songs);
 });
 
-app.post('/felines', function(req, res) {
-  cats.push(req.body.catName);
+app.post('/songs', function(req, res) {
+  var newSong = {
+    artist: req.body.artist,
+    title: req.body.title
+  };
+  // add to our song array
+  songs.push(newSong);
+
+  // send new song back to the clien
   res.send(true);
 });
 
